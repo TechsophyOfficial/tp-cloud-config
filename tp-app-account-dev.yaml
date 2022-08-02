@@ -63,7 +63,6 @@ management:
   endpoint:
     health:
       show-details: always
-
 resilience4j:
   circuitbreaker:
     instances:
