@@ -1,0 +1,132 @@
+spring:
+  application:
+    name: tp-app-notification
+  devtools:
+    livereload:
+      enabled: false
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+server:
+  http2:
+    enabled: true
+
+graphql:
+  servlet:
+    maxQueryDepth: 100
+    exception-handlers-enabled: false
+    mapping: /notification/v1/graphql
+  playground:
+    enabled: true
+
+voyager:
+  enabled: true
+
+notification:
+  aws:
+    region: ${SES_AWS_REGION}
+    access-key: ${SES_AWS_ACCESS_KEY}
+    access-secret: ${SES_AWS_ACCESS_SECRET}
+  sns:
+    access-key: ${SNS_ACCESS_KEY}
+    secret-key: ${SNS_SECRET_KEY}
+    region: ${SNS_REGION}
+  db:
+    provider:
+      mongodb:
+        enabled: ${DB_MONGO_ENABLED:true}
+      memory:
+        enabled: ${DB_MEMORY_ENABLED:false}
+  sms:
+    enabled: ${SMS_ENABLED:true}
+    provider:
+      twilio: ${SMS_PROVIDER_TWILIO:true}
+      aws: ${SMS_PROVIDER_AWS:false}
+  email:
+    enabled: ${EMAIL_ENABLED:true}
+    provider:
+      sendMail: ${EMAIL_PROVIDER_SENDMAIL:false}
+      sendGrid: ${EMAIL_PROVIDER_SENDGRID:false}
+      awsSES: ${EMAIL_PROVIDER_AWS_SES:true}
+  push-notification:
+    enabled: ${FIREBASE_ENABLED}
+    provider:
+      firebase: ${FIREBASE_APP}
+
+  firebase:
+    enabled: ${FIREBASE_ENABLED}
+    project_id: ${FIREBASE_PROJECT_ID}
+    private_key_id: ${FIREBASE_PRIVATE_KEY_ID}
+    private_key: |
+      ${FIREBASE_PRIVATE_KEY}
+    client_email: ${FIREBASE_CLIENT_EMAIL}
+    client_id : ${FIREBASE_CLIENT_ID}
+    token_uri: ${FIREBASE_TOKEN_URI}
+  smtp:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    user: ${SMTP_USER:noreply.tsf@gmail.com}
+    password: ${SMTP_PASSWORD}
+    debug: false
+  templates:
+    enabled: ${TEMPLATES_ENABLED}
+  dms:
+    enabled: ${DMS_ENABLED}
+  twilio:
+    accountId: ${TWILIO_ACCOUNT_ID}
+    token: ${TWILIO_TOKEN}
+    msId: ${TWILIO_MSID}
+
+
+
+
+elasticsearch:
+  enabled: ${ELASTIC_SEARCH_ENABLED:false}
+  host: ${ELASTIC_SEARCH_HOST}
+
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+
+gateway:
+  uri: ${GATEWAY_URI}
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /notification/v3/api-docs
+
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+
+
+
+
+

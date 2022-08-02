@@ -1,0 +1,62 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 256MB
+      max-request-size: 256MB
+      enabled: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/${KEYCLOAK_REALM_NAME}
+user:
+  management:
+    token-api: ${KEYCLOAK_URL_AUTH}/auth/realms/master/protocol/openid-connect/token
+    realm-api: ${KEYCLOAK_URL_AUTH}/auth/admin/realms
+    client_id: ${CLIENT_ID}
+    username: ${USERNAME}
+    password: ${PASSWORD}
+
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+
+gateway:
+  uri: ${GATEWAY_URI}
+
+default:
+  pagelimit: 5
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /admin/v3/api-docs
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED

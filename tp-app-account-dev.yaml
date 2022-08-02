@@ -1,0 +1,80 @@
+spring:
+  application:
+    name: account-app
+  servlet:
+    multipart:
+      max-file-size: ${MAX_FILE_SIZE}
+
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+
+user:
+  management:
+    keycloak-api: ${KEYCLOAK_URL_AUTH}/auth/admin/realms/
+    user-api: /users
+    roles-api: /roles
+    groups-api: /groups
+    count-api: /count
+
+default:
+  pagelimit: 5
+
+clients: ${CLIENTS}
+
+gateway:
+  uri: ${GATEWAY_URI}
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /accounts/v3/api-docs
+
+email:
+  validity: ${EMAIL_VALIDITY:86400}
+otp:
+  length: ${OTP_LENGTH:6}
+  validity: ${OTP_VALIDITY:180}
+USER:
+  REGISTRATION:
+    FAILURE:
+      EMAIL:
+        TO: ${USER_REGISTRATION_FAILURE_EMAIL_TO}
+        SUBJECT: ${USER_REGISTRATION_FAILURE_EMAIL_SUBJECT}
+
+
+notification:
+  enabled: true
+  email:
+    query: "mutation SEND_EMAIL($mailMessage: MailMessage!) {\n  sendMail(input: $mailMessage)\n}\n"
+  sms:
+    query: "mutation SEND_SMS($smsMessage: smsMessage!) {\n  sendSMS(input: $smsMessage)\n}\n"
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+

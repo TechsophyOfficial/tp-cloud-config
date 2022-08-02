@@ -1,0 +1,60 @@
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /crm/v3/api-docs
+
+
+gateway:
+  uri: ${GATEWAY_URI}
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+
+
+crm:
+  url: ${CRM_URL:https://crm.paisaplan.in/Api}
+  grant-type: ${CRM_GRANT_TYPE:client_credentials}
+  client-id: ${CRM_CLIENT_ID}
+  client-secret: ${CRM_LIENT_SECRET}
+  db-enabled: ${DB_ENABLED:false}
+
+
+opentracing:
+  spring:
+    cloud:
+      log:
+        enabled: true
+
+default:
+  pagelimit: 20
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+

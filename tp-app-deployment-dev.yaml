@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: deployment-app
+    package-location: ${DEPLOYMENT_TMP_DIR}
+
+
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+
+
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+
+gateway:
+  uri: ${GATEWAY_URI}
+
+modelers:
+  deployment:
+    forms-api: /form-modeler/v1/forms/
+    workflows-api: /process-modeler/v1/processes/
+    rules-api: /rule-modeler/v1/rules/
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /deployment/v3/api-docs
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED

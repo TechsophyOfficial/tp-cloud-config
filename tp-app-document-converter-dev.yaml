@@ -1,0 +1,49 @@
+spring:
+  application:
+  freemarker:
+    suffix: .ftl
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+logging:
+  level:
+    '[org.springframework.web]':  INFO
+  logback:
+    rollingpolicy:
+      max-file-size: 30MB
+gateway:
+  uri: ${GATEWAY_URI}
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /document-converter/v3/api-docs
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED

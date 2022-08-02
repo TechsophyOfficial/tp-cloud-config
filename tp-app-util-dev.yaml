@@ -1,0 +1,48 @@
+webclient:
+  buffer-size: ${WEBCLIENT_BUFFER_SIZE:10485760}
+
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+
+gateway:
+  uri: ${GATEWAY_URI}
+
+springdoc:
+  api-docs:
+    path: /util/v3/api-docs
+
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+logo:
+  url: ${LOGO_URL:/opt/qrcode/logo.png}
+  display: ${LOGO_DISPLAY:false}
+
+default:
+  pagelimit: 20
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED

@@ -1,0 +1,58 @@
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH:https://keycloak-tsplatform.techsophy.com}/auth/realms/
+
+gateway:
+  uri: ${GATEWAY_URI:https://api-gateway.techsophy.com/api}
+
+database:
+  url: ${TP_MODELER_APP_MONGO_URI:mongodb://localhost:27017}
+  name: techsophy-platform
+
+dbstorage: ${DB_STORAGE:false}
+
+paymentgateway:
+  razorpay:
+    url: ${RAZORPAY_URL:https://api.razorpay.com/v1}
+    keyid: ${RAZORPAY_KEY_ID:rzp_test_gCkKFfXr3QWkxo}
+    keysecret: ${RAZORPAY_KEY_SECRET:r3Sj6j9JQkgarcJr4vmDu7JH}
+  paypal:
+    url_v1: ${PAYPAL_URL_V1:https://api.sandbox.paypal.com/v1}
+    url_v2: ${PAYPAL_URL_V2:https://api.sandbox.paypal.com/v2}
+    auth_url: ${PAYPAL_AUTH_URL:/oauth2/token}
+    keyid: ${PAYPAL_KEY_ID:AYL2M6v3JwUciazHLMAPxAJA1zuEGYbm3e75XAcaYWySVIejCBKBSpTFPr58J381KPMzvRPymPvMrPt7}
+    keysecret: ${PAYPAL_KEY_SECRET:EMuFpv1mkjSavIVveEdq3zxLMjuDl8SOPYLjl8dgtRhDqI2zXK-YT3l95jpPbk-uS1mFmyM6r1RnTvc5}
+    bncode: ${PAYPAL_BN_CODE:Creed_SP_PPCP}
+  payby:
+
+springdoc:
+  api-docs:
+    path: /payment-gateway/v3/api-docs
+
+default:
+  pagelimit: 5
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED

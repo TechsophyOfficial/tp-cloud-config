@@ -1,0 +1,88 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+  kafka:
+    producer:
+      bootstrap-servers: ${KAFKA_SERVER_URL}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+dms:
+  s3:
+    enabled: ${AWS_ENABLED}
+    bucket: ${AWS_BUCKET_NAME}
+    accessKey: ${AWS_ACCESS_KEY}
+    secretKey: ${AWS_SECRET_KEY}
+    region: ${AWS_REGION}
+
+  digitalOcean:
+    enabled: ${DIGITAL_OCEAN_ENABLED}
+    bucket: ${DIGITAL_OCEAN_BUCKET_NAME}
+    accessKey: ${DIGITAL_OCEAN_ACCESSKEY}
+    secretKey: ${DIGITAL_OCEAN_SECRET_KEY}
+    region: ${DIGITAL_OCEAN_REGION}
+    endpoint: ${DIGITAL_OCEAN_ENDPOINT}
+
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+
+gateway:
+  uri: ${GATEWAY_URI}
+
+
+default:
+  pagelimit: 5
+
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /dms/v3/api-docs
+
+
+
+elasticsearch:
+  uri: ${ELASTIC_SEARCH_URL:http://localhost:8080}
+  enable: ${ELASTIC_ENABLED:true}
+
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED

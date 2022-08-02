@@ -1,0 +1,52 @@
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+  client.id: ${KEYCLOAK_CLIENT_ID}
+  client.secret: ${KEYCLOAK_CLIENT_SECRET}
+  realm.name: ${KEYCLOAK_REALM_NAME}
+  auth-server-url: ${keycloak.url.auth}/auth
+  realm: ${keycloak.realm.name}
+  resource: ${keycloak.client.id}
+  credentials:
+    secret: ${keycloak.client.secret}
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /scheduler/v3/api-docs
+
+
+gateway:
+  uri: ${GATEWAY_URI}
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+
+default:
+  pagelimit: 20
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+

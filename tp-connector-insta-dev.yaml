@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: tp-connector-insta
+    package-location: ${TEMP_FILE_LOCATION}
+
+gateway:
+  uri:  ${GATEWAY_URI}
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+
+
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+
+insta:
+  insta_url: ${INSTA_URL}
+  hospital_name: ${INSTA_HOSTPITAL_NAME}
+  customer_user_id: ${INSTA_customer_USER}
+  customer_user_password: ${CUSTOME_USER_PASSWORD}
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /insta/v3/api-docs
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        registerHealthIndicator: true
+        evenrConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
