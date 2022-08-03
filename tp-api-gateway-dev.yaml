@@ -1,5 +1,5 @@
 keycloak:
-  issuer-uri: ${KEYCLOAK_URL_AUTH:https://keycloak-tsplatform.techsophy.com}/auth/realms/
+  issuer-uri:: ${KEYCLOAK_URL_AUTH:https://keycloak-tsplatform.techsophy.com}/auth/realms/
   realm.name: ${KEYCLOAK_REALM_NAME:techsophy-platform}
   # Keycloak Camunda Identity Client
   client.id: ${KEYCLOAK_CLIENT_ID:camunda-identity-service}
