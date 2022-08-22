@@ -52,6 +52,9 @@ notification:
   sms:
     query: "mutation SEND_SMS($smsMessage: smsMessage!) {\n  sendSMS(input: $smsMessage)\n}\n"
 
+mongock:
+  migration-scan-package: com.techsophy.tsf.account.changelog
+  
 management:
   health:
     circuitbreakers:
