@@ -27,7 +27,7 @@ default:
 
 mongock:
   migration-scan-package:
-    - com.techsophy.tsf.runtime.form.config
+    -com.techsophy.tsf.runtime.form.changelog
 
 management:
   health:
