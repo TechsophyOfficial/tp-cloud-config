@@ -54,6 +54,7 @@ notification:
 
 mongock:
   migration-scan-package: com.techsophy.tsf.account.changelog
+  transaction-enabled: ${MONGOCK_TRANSACTIONS:true}
   
 management:
   health:
