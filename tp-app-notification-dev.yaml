@@ -78,9 +78,6 @@ notification:
     token: ${TWILIO_TOKEN}
     msId: ${TWILIO_MSID}
 
-
-
-
 elasticsearch:
   enabled: ${ELASTIC_SEARCH_ENABLED:false}
   host: ${ELASTIC_SEARCH_HOST}
