@@ -12,3 +12,8 @@ database:
 
 default:
   pagelimit: 10
+  
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    path: /task-management/v3/api-docs
