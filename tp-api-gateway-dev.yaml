@@ -1,11 +1,16 @@
 keycloak:
   issuer-uri: ${KEYCLOAK_URL_AUTH:https://keycloak-tsplatform.techsophy.com}/auth/realms/
+ 
   realm.name: ${KEYCLOAK_REALM_NAME:techsophy-platform}
   # Keycloak Camunda Identity Client
   client.id: ${KEYCLOAK_CLIENT_ID:camunda-identity-service}
   client.secret: ${KEYCLOAK_CLIENT_SECRET:your-client-secret}
-
-
+  
+ ADD_ALLOWEDHEADER: '*'
+ 
+ ADD_ALLOWEDMETHOD: '*'
+ 
+ CORS_ALLOWEDORIGINS: '*'
 
 
 springdoc:

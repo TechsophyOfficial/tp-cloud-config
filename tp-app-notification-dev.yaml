@@ -32,6 +32,10 @@ notification:
     access-key: ${SNS_ACCESS_KEY}
     secret-key: ${SNS_SECRET_KEY}
     region: ${SNS_REGION}
+
+  two-factor:
+    api-key: ${TWO_FACTOR_API_KEY:ef4b3af5-040d-11ed-9c12-0200cd936042}
+
   db:
     provider:
       mongodb:
@@ -41,8 +45,10 @@ notification:
   sms:
     enabled: ${SMS_ENABLED:true}
     provider:
-      twilio: ${SMS_PROVIDER_TWILIO:true}
+      twilio: ${SMS_PROVIDER_TWILIO:false}
       aws: ${SMS_PROVIDER_AWS:false}
+      two-factor: ${SMS_PROVIDER_TWO_FACTOR:true}
+
   email:
     enabled: ${EMAIL_ENABLED:true}
     provider:
@@ -125,6 +131,8 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
+
+
 
 
 
