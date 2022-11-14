@@ -25,13 +25,13 @@ paymentgateway:
   payby:
   
   paytm:
-    url: ${PAYTM_URL:https://securegw-stage.paytm.in}
-    callback-url: ${PAYTM_CALLBACK_URL:http:localhost/8080}
-    merchantId: ${PAYTM_MERCHANT_ID:XXOqwZ74462439658697}
-    merchantKey: ${PAYTM_MERCHANT_KEY:GoQzDnAqx4#mQugj}
-    channelId: ${PAYTM_CHANNEL_ID:WEB}
-    website: ${PAYTM_WEBSITE:WEBSTAGING}
-    industryTypeId: ${PAYTM_INDUSTRY_TYPE_ID:Retail}
+    url: ${PAYTM_URL}
+    callback-url: ${PAYTM_CALLBACK_URL}
+    merchantId: ${PAYTM_MERCHANT_ID}
+    merchantKey: ${PAYTM_MERCHANT_KEY}
+    channelId: ${PAYTM_CHANNEL_ID}
+    website: ${PAYTM_WEBSITE}
+    industryTypeId: ${PAYTM_INDUSTRY_TYPE_ID}
 
 springdoc:
   api-docs:
