@@ -23,6 +23,15 @@ paymentgateway:
     keysecret: ${PAYPAL_KEY_SECRET:EMuFpv1mkjSavIVveEdq3zxLMjuDl8SOPYLjl8dgtRhDqI2zXK-YT3l95jpPbk-uS1mFmyM6r1RnTvc5}
     bncode: ${PAYPAL_BN_CODE:Creed_SP_PPCP}
   payby:
+  
+  paytm:
+    url: ${PAYTM_URL:https://securegw-stage.paytm.in}
+    callback-url: ${PAYTM_CALLBACK_URL:http:localhost/8080}
+    merchantId: ${PAYTM_MERCHANT_ID:XXOqwZ74462439658697}
+    merchantKey: ${PAYTM_MERCHANT_KEY:GoQzDnAqx4#mQugj}
+    channelId: ${PAYTM_CHANNEL_ID:WEB}
+    website: ${PAYTM_WEBSITE:WEBSTAGING}
+    industryTypeId: ${PAYTM_INDUSTRY_TYPE_ID:Retail}
 
 springdoc:
   api-docs:
