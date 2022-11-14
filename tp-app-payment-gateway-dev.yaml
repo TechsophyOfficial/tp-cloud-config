@@ -23,6 +23,15 @@ paymentgateway:
     keysecret: ${PAYPAL_KEY_SECRET:EMuFpv1mkjSavIVveEdq3zxLMjuDl8SOPYLjl8dgtRhDqI2zXK-YT3l95jpPbk-uS1mFmyM6r1RnTvc5}
     bncode: ${PAYPAL_BN_CODE:Creed_SP_PPCP}
   payby:
+  
+  paytm:
+    url: ${PAYTM_URL}
+    callback-url: ${PAYTM_CALLBACK_URL}
+    merchantId: ${PAYTM_MERCHANT_ID}
+    merchantKey: ${PAYTM_MERCHANT_KEY}
+    channelId: ${PAYTM_CHANNEL_ID}
+    website: ${PAYTM_WEBSITE}
+    industryTypeId: ${PAYTM_INDUSTRY_TYPE_ID}
 
 springdoc:
   api-docs:
