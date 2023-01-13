@@ -4,6 +4,10 @@ keycloak:
 gateway:
   uri: ${GATEWAY_URI}
 
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+
 webclient:
   buffer-size: ${WEBCLIENT_BUFFER_SIZE:10485760}
 
