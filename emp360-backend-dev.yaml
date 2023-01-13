@@ -1,0 +1,12 @@
+keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+
+gateway:
+  uri: ${GATEWAY_URI}
+
+webclient:
+  buffer-size: ${WEBCLIENT_BUFFER_SIZE:10485760}
+
+default:
+  pagelimit: 20
+
