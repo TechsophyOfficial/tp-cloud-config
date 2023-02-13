@@ -1,19 +1,33 @@
 spring:
-  application:
+    application:
     name: awgment-app-task-management
+    
 gateway :
   uri:  ${GATEWAY_URI}
+  
 keycloak:
   issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
-
-database:
-  url: ${TP_MODELER_APP_MONGO_URI}
-  name: techsophy-platform
-
+  
+data:
+  mongodb:
+  uri: ${TP_MODELER_APP_MONGO_URI}
+  database: techsophy-platform
+  
+server:
+  http2:
+    enabled: true
+logging:
+  level:
+    root: debug
 default:
   pagelimit: 10
-  
+
 springdoc:
   version: '@springdoc.version@'
   api-docs:
     path: /task-management/v3/api-docs
+
+properties:
+  gateway-url: ${GATEWAY_URL}
+  keycloak-issuer-uri: ${KEYCLOAK_ISSUER_URI}
+  keycloak-realm-name: ${KEYCLOAK_REALM_NAME}
