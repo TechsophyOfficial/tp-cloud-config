@@ -265,7 +265,7 @@ spring:
             - Path=/api/task-management/**
           filters:
             - StripPrefix=1
-         - id: emp-app-service
+        - id: emp-app-service
           uri: http://emp-app:8080
           predicates:
             - Path=/api/emp360-backend/**
