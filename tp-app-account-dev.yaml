@@ -6,7 +6,7 @@ spring:
       max-file-size: ${MAX_FILE_SIZE}
   data:
     mongodb:
-      auto-index-creation: {AUTO_INDEX_CREATION}
+      auto-index-creation: true
 
 keycloak:
   issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
