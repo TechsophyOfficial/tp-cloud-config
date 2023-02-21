@@ -33,6 +33,7 @@ paymentgateway:
     website: ${PAYTM_WEBSITE}
     industryTypeId: ${PAYTM_INDUSTRY_TYPE_ID}
 
+
 springdoc:
   api-docs:
     path: /payment-gateway/v3/api-docs
