@@ -284,6 +284,11 @@ spring:
             authorization-uri: ${keycloak.issuer-uri}${keycloak.realm.name}/protocol/openid-connect/auth
             userinfo-uri: ${keycloak.issuer-uri}${keycloak.realm.name}/protocol/openid-connect/userinfo
             user-name-attribute: preferred_username
+          KIMS:
+            token-uri: ${keycloak.issuer-uri}KIMS/protocol/openid-connect/token
+            authorization-uri: ${keycloak.issuer-uri}KIMS/protocol/openid-connect/auth
+            userinfo-uri: ${keycloak.issuer-uri}KIMS/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
         registration:
           keycloak-without-test-scope:
             provider: keycloak
@@ -291,6 +296,12 @@ spring:
             client-secret: ${keycloak.client.secret}
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+          KIMS:
+            provider: KIMS
+            client-id: camunda-identity-service
+            client-secret: 19349415-12bd-4444-9505-6cf3f5a199f9
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/KIMS"
 
 
 
