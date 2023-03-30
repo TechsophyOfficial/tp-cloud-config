@@ -10,6 +10,10 @@ keycloak:
 default:
   pagelimit: 5
 
+database:
+  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+
 
 springdoc:
   version: '@springdoc.version@'
