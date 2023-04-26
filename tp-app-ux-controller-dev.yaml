@@ -14,6 +14,8 @@ keycloak:
 
 camunda-engine.servlet.context-path : ${CAMUNDA_ENGINE_CONTEXT_PATH}
 
+shared-workflow-engine: ${SHARED_WORKFLOW_ENGINE:true}
+
 springdoc:
   api-docs:
     path: workflow/v3/api-docs
