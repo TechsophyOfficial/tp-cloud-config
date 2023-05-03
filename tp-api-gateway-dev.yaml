@@ -59,7 +59,7 @@ spring:
         - id: accounts-service
           uri: http://account-app:8080
           predicates:
-            - Path=/api/accounts/**
+            - Path=/api/accounts/**,/api/internal/**
           filters:
             - RemoveRequestHeader=Cookie
             - StripPrefix=1
