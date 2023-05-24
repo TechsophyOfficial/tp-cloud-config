@@ -32,7 +32,7 @@ spring:
       #          enabled: true
       routes:
         - id: redirect-modeler
-          uri: http://core-ui:8080
+          uri: https://api-gateway.techsophy.com
           predicates:
             - Path=/api/model/**            
           filters:
