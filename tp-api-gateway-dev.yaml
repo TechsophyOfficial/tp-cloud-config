@@ -31,6 +31,13 @@ spring:
       #        locator:
       #          enabled: true
       routes:
+        - id: redirect-modeler
+          uri: http://core-ui:8080
+          predicates:
+            - Path=/api/model/**            
+          filters:
+            - RedirectTo=302, https://techsophy-platform.techsophy.com
+            - StripPrefix=1      
         - id: form-modeler-service
           uri: http://form-app:8080
           predicates:
