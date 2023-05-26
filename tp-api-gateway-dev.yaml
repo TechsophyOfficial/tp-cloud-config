@@ -34,9 +34,8 @@ spring:
         - id: redirect-modeler
           uri: https://api-gateway.techsophy.com
           predicates:
-            - Path=/api/model/**            
+            - Path=/model/**            
           filters:
-            - StripPrefix=1
             - RedirectTo=301, https://techsophy-platform.techsophy.com/model
         - id: form-modeler-service
           uri: http://form-app:8080
