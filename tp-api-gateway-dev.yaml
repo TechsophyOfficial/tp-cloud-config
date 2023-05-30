@@ -37,6 +37,12 @@ spring:
             - Path=/model/**            
           filters:
             - RedirectTo=301, https://techsophy-platform.techsophy.com/model
+        - id: redirect-workflow
+          uri: https://api-gateway.techsophy.com
+          predicates:
+            - Path=/camunda/**            
+          filters:
+            - RedirectTo=301, https://techsophy-platform.techsophy.com/camunda
         - id: form-modeler-service
           uri: http://form-app:8080
           predicates:
