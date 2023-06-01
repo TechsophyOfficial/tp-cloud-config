@@ -29,6 +29,7 @@ spring:
       ddl-auto: update
 
 keycloak:
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
   # SSO Authentication requests. Send by application as redirect to the browser
   url.auth: ${KEYCLOAK_URL_AUTH}
   # SSO Token requests. Send from the application to Keycloak
