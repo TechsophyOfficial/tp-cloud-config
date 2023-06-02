@@ -66,3 +66,9 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
+
+paymentWorkflow:
+  clientId: ${PAYMENT_WORKFLOW_CLIENT_ID}
+  clientSecret: ${PAYMENT_WORKFLOW_CLIENT_SECRET}
+  secretKey: ${PAYMENT_WORKFLOW_SECRET_KEY}
+  startProcess: ${PAYMENT_WORKFLOW_START_PROCESS}
