@@ -42,7 +42,7 @@ spring:
           predicates:
             - Path=/camunda/**            
           filters:
-            - RedirectTo=301, https://localhost:8083/camunda
+            - RedirectTo=301, http://localhost:8083/camunda
         - id: form-modeler-service
           uri: http://form-app:8080
           predicates:
