@@ -29,6 +29,9 @@ spring:
       ddl-auto: update
 
 keycloak:
+  multi-realm:
+    username: ${MULTI_REALM_USERNAME}
+    password: ${MULTI_REALM_PASSWORD}
   issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
   # SSO Authentication requests. Send by application as redirect to the browser
   url.auth: ${KEYCLOAK_URL_AUTH}
