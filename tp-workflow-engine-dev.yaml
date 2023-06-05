@@ -27,6 +27,10 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+tenants:
+  registrations:
+    - techsophy-platform
+    - KIMS
 
 keycloak:
   multi-realm:
