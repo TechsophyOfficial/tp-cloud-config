@@ -45,9 +45,9 @@ keycloak:
   resource: ${keycloak.client.id}
   credentials:
       secret: ${keycloak.client.secret}
-  master:
-    username: ${MASTER_REALM_USERNAME}
-    password: ${MASTER_REALM_PASSWORD}
+  multi-realm:
+    username: ${MULTI_REALM_USERNAME}
+    password: ${MULTI_REALM_PASSWORD}
 
 # Spring Boot Security OAuth2 SSO
 spring.security:
