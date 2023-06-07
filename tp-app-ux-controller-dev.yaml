@@ -45,3 +45,7 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
+database:
+#  url: ${TP_MODELER_APP_MONGO_URI}
+  name: techsophy-platform
+        
