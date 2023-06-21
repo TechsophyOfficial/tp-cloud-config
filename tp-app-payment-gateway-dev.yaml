@@ -31,7 +31,7 @@ paymentgateway:
     merchantKey: ${PAYTM_MERCHANT_KEY}
     channelId: ${PAYTM_CHANNEL_ID}
     website: ${PAYTM_WEBSITE}
-    industryTypeId: ${PAYTM_INDUSTRY_TYPE_ID}
+    industryTypeId: ${PAYTM_INDUSTRY_TYPE_ID:Retail}
 
 
 springdoc:
