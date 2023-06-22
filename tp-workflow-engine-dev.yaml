@@ -123,3 +123,6 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
+logging:
+  level:
+    org.camunda: ERROR
