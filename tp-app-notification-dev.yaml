@@ -80,6 +80,8 @@ notification:
   dms:
     enabled: ${DMS_ENABLED}
   twilio:
+    sendgrid:
+      api-key: ${SENDGRID_API_KEY:sendgridApiKey}
     accountId: ${TWILIO_ACCOUNT_ID}
     token: ${TWILIO_TOKEN}
     msId: ${TWILIO_MSID}
