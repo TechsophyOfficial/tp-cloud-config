@@ -8,6 +8,9 @@ spring:
     multipart:
       max-file-size: 15MB
       max-request-size: 15MB
+
+  sendgrid:
+    api-key: ${SENDGRID_API_KEY:sendgridApiKey}
 server:
   http2:
     enabled: true
@@ -134,7 +137,10 @@ resilience4j:
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
 
-
+mongock:
+  transaction-enabled: false
+  migration-scan-package:
+    - com.techsophy.tsf.notification.changelog
 
 
 
