@@ -9,9 +9,13 @@ keycloak:
 
 tenants:
   registrations:
-    - techsophy-platform
-    - KIMS
-    - awgment-dev
+    - ${MULTI_REALM_TECHSOPHY_PLATFORM:techsophy-platform}
+    - ${MULTI_REALM_KIMS:KIMS}
+    - ${MULTI_REALM_AWGMENT_DEV:awgment-dev}
+    - ${MULTI_REALM_ECART:ECart}
+    - ${MULTI_REALM_PROJECTFLOW:ProjectFlow}
+    - ${MULTI_REALM_HEALTH_HUB:HealthHub}
+    - ${MULTI_REALM_MASTER:master}
 
 ADD_ALLOWEDHEADER: '*'
 ADD_ALLOWEDMETHOD: '*'
@@ -35,9 +39,9 @@ spring:
         - id: redirect-modeler
           uri: https://api-gateway.techsophy.com
           predicates:
-            - Path=/model/**            
+            - Path=/model/**
           filters:
-            - RedirectTo=301, https://techsophy-platform.techsophy.com/model    
+            - RedirectTo=301, https://techsophy-platform.techsophy.com/model
         - id: form-modeler-service
           uri: http://form-app:8080
           predicates:
