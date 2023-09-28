@@ -33,6 +33,7 @@ tenants:
     - ${MULTI_REALM_KIMS:KIMS}
     - ${MULTI_REALM_AWGMENT_DEV:awgment-dev}
 
+
 keycloak:
   multi-realm:
     username: ${MULTI_REALM_USERNAME}
