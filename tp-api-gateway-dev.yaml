@@ -12,10 +12,6 @@ tenants:
     - ${MULTI_REALM_TECHSOPHY_PLATFORM:techsophy-platform}
     - ${MULTI_REALM_KIMS:KIMS}
     - ${MULTI_REALM_AWGMENT_DEV:awgment-dev}
-    - ${MULTI_REALM_ECART:ECart}
-    - ${MULTI_REALM_PROJECTFLOW:ProjectFlow}
-    - ${MULTI_REALM_HEALTH_HUB:HealthHub}
-    - ${MULTI_REALM_MASTER:master}
 
 ADD_ALLOWEDHEADER: '*'
 ADD_ALLOWEDMETHOD: '*'
