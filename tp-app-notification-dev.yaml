@@ -8,9 +8,9 @@ spring:
     multipart:
       max-file-size: 15MB
       max-request-size: 15MB
-
-  sendgrid:
-    api-key: ${SENDGRID_API_KEY:sendgridApiKey}
+#
+#  sendgrid:
+#    api-key: ${SENDGRID_API_KEY:sendgridApiKey}
 server:
   http2:
     enabled: true
@@ -83,8 +83,8 @@ notification:
   dms:
     enabled: ${DMS_ENABLED}
   twilio:
-    sendgrid:
-      api-key: ${SENDGRID_API_KEY:sendgridApiKey}
+#    sendgrid:
+#      api-key: ${SENDGRID_API_KEY:sendgridApiKey}
     accountId: ${TWILIO_ACCOUNT_ID}
     token: ${TWILIO_TOKEN}
     msId: ${TWILIO_MSID}
@@ -98,7 +98,7 @@ elasticsearch:
 
 database:
   url: ${TP_MODELER_APP_MONGO_URI}
-  name: techsophy-platform
+  name: ${KEYCLOAK_REALM_NAME:techsophy-platform}
 
 gateway:
   uri: ${GATEWAY_URI}
@@ -137,10 +137,10 @@ resilience4j:
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
 
-mongock:
-  transaction-enabled: false
-  migration-scan-package:
-    - com.techsophy.tsf.notification.changelog
+#mongock:
+#  transaction-enabled: false
+#  migration-scan-package:
+#    - com.techsophy.tsf.notification.changelog
 
 
 
