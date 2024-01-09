@@ -27,6 +27,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+
 tenants:
   registrations:
     - ${MULTI_REALMS: techsophy-platform}
