@@ -1,6 +1,17 @@
 keycloak:
   issuer-uri: ${KEYCLOAK_URL_AUTH:https://keycloak-tsplatform.techsophy.com}/auth/realms/
   realm.name: ${KEYCLOAK_REALM_NAME:techsophy-platform}
+  client.id: ${CAMUNDA_IDENTITY_SERVICE:camunda-identity-service}
+  auth-server-url: ${KEYCLOAK_URL_AUTH:https://keycloak-tsplatform.techsophy.com}/auth
+  multi-realm:
+    username: ${MULTI_REALM_USERNAME}
+    password: ${MULTI_REALM_PASSWORD}
+
+tenants:
+  registrations:
+    - ${MULTI_REALM_TECHSOPHY_PLATFORM:techsophy-platform}
+    - ${MULTI_REALM_KIMS:KIMS}
+    - ${MULTI_REALM_AWGMENT_DEV:awgment-dev}
 
 ADD_ALLOWEDHEADER: '*'
 ADD_ALLOWEDMETHOD: '*'
@@ -21,6 +32,12 @@ spring:
       #        locator:
       #          enabled: true
       routes:
+        - id: redirect-modeler
+          uri: https://api-gateway.techsophy.com
+          predicates:
+            - Path=/model/**
+          filters:
+            - RedirectTo=301, https://techsophy-platform.techsophy.com/model
         - id: form-modeler-service
           uri: http://form-app:8080
           predicates:
@@ -59,7 +76,7 @@ spring:
         - id: accounts-service
           uri: http://account-app:8080
           predicates:
-            - Path=/api/accounts/**
+            - Path=/api/accounts/**,/api/internal/**
           filters:
             - RemoveRequestHeader=Cookie
             - StripPrefix=1

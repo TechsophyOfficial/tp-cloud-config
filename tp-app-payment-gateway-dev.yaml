@@ -31,7 +31,7 @@ paymentgateway:
     merchantKey: ${PAYTM_MERCHANT_KEY}
     channelId: ${PAYTM_CHANNEL_ID}
     website: ${PAYTM_WEBSITE}
-    industryTypeId: ${PAYTM_INDUSTRY_TYPE_ID}
+    industryTypeId: ${PAYTM_INDUSTRY_TYPE_ID:Retail}
 
 
 springdoc:
@@ -66,3 +66,13 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
+
+paymentWorkflow:
+  clientId: ${PAYMENT_WORKFLOW_CLIENT_ID}
+  clientSecret: ${PAYMENT_WORKFLOW_CLIENT_SECRET}
+  secretKey: ${PAYMENT_WORKFLOW_SECRET_KEY}
+  startProcess: ${PAYMENT_WORKFLOW_START_PROCESS}
+
+mongock:
+  migration-scan-package: com.techsophy.tsf.payment.gateway.changelog
+  transaction-enabled: true

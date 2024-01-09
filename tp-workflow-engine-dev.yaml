@@ -27,8 +27,15 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+tenants:
+  registrations:
+    - ${MULTI_REALMS:techsophy-platform}
 
 keycloak:
+  multi-realm:
+    username: ${MULTI_REALM_USERNAME}
+    password: ${MULTI_REALM_PASSWORD}
+  issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
   # SSO Authentication requests. Send by application as redirect to the browser
   url.auth: ${KEYCLOAK_URL_AUTH}
   # SSO Token requests. Send from the application to Keycloak
@@ -114,3 +121,6 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
+# logging:
+#   level:
+#     org.camunda: ERROR
