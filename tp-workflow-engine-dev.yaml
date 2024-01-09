@@ -29,7 +29,9 @@ spring:
       ddl-auto: update
 tenants:
   registrations:
-    - ${MULTI_REALMS: techsophy-platform}
+    - ${MULTI_REALM_TECHSOPHY_PLATFORM:techsophy-platform}
+    - ${MULTI_REALM_KIMS:KIMS}
+    - ${MULTI_REALM_AWGMENT_DEV:awgment-dev}
 
 keycloak:
   multi-realm:
