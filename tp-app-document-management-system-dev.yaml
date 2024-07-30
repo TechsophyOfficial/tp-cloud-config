@@ -30,7 +30,7 @@ keycloak:
 
 database:
   url: ${TP_MODELER_APP_MONGO_URI}
-  name: techsophy-platform
+  name: ${DATABASE_NAME:techsophy-platform}
 
 gateway:
   uri: ${GATEWAY_URI}
