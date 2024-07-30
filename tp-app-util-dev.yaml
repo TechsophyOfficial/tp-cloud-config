@@ -3,6 +3,7 @@ webclient:
 
 keycloak:
   issuer-uri: ${KEYCLOAK_URL_AUTH}/auth/realms/
+  realm: ${REALM_NAME}
 
 gateway:
   uri: ${GATEWAY_URI}
@@ -20,6 +21,11 @@ logo:
 
 default:
   pagelimit: 20
+
+url:
+  shortener:
+    expiry:
+      minutes: ${SHORT_URL_EXPIRY_IN_MINUTES:131400}
 
 management:
   health:
