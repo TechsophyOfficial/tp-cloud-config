@@ -8,7 +8,7 @@ spring:
     multipart:
       max-file-size: 15MB
       max-request-size: 15MB
-#
+
 #  sendgrid:
 #    api-key: ${SENDGRID_API_KEY:sendgridApiKey}
 server:
@@ -17,6 +17,7 @@ server:
 
 graphql:
   servlet:
+    corsEnabled: false
     maxQueryDepth: 100
     exception-handlers-enabled: false
     mapping: /notification/v1/graphql
@@ -37,7 +38,18 @@ notification:
     region: ${SNS_REGION}
 
   two-factor:
-    api-key: ${TWO_FACTOR_API_KEY:ef4b3af5-040d-11ed-9c12-0200cd936042}
+    api-key: ${TWO_FACTOR_API_KEY}
+    enabled: ${TWO_FACTOR_ENABLED:true}
+    base-url: ${TWO_FACTOR_BASE_URL}
+    dlt-header: ${TWO_FACTOR_DLT_HEADER}
+    module : ${TWO_FACTOR_MODULE}
+    peid: ${TWO_FACTOR_PEID}
+
+  whatsapp:
+    enabled: ${WHATSAPP_ENABLED:true}
+    key: ${WHATSAPP_KEY:key_mIWIqHKAdl}
+    base-url: ${WHATSAPP_BASE_URL:https://public.doubletick.io/whatsapp/message}
+    from: ${WHATSAPP_FROM:+919121295150}
 
   db:
     provider:
@@ -59,9 +71,9 @@ notification:
       sendGrid: ${EMAIL_PROVIDER_SENDGRID:false}
       awsSES: ${EMAIL_PROVIDER_AWS_SES:true}
   push-notification:
-    enabled: ${FIREBASE_ENABLED}
+    enabled: true
     provider:
-      firebase: ${FIREBASE_APP}
+      firebase: ${FIREBASE_ENABLED}
 
   firebase:
     enabled: ${FIREBASE_ENABLED}
@@ -98,7 +110,7 @@ elasticsearch:
 
 database:
   url: ${TP_MODELER_APP_MONGO_URI}
-  name: ${KEYCLOAK_REALM_NAME:techsophy-platform}
+  name: ${DATABASE_NAME:techsophy-platform}
 
 gateway:
   uri: ${GATEWAY_URI}
@@ -137,12 +149,7 @@ resilience4j:
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
 
-#mongock:
-#  transaction-enabled: false
-#  migration-scan-package:
-#    - com.techsophy.tsf.notification.changelog
-
-
-
-
-
+mongock:
+  transaction-enabled: false
+  migration-scan-package:
+    - com.techsophy.tsf.notification.changelog
