@@ -8,6 +8,8 @@ spring:
     multipart:
       max-file-size: 15MB
       max-request-size: 15MB
+  graphql:
+    path: /notification/v1/graphql
 #
 #  sendgrid:
 #    api-key: ${SENDGRID_API_KEY:sendgridApiKey}
