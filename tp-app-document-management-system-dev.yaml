@@ -1,8 +1,8 @@
 spring:
   servlet:
     multipart:
-      max-file-size: 15MB
-      max-request-size: 15MB
+      max-file-size: 1000MB
+      max-request-size: 1000MB
   kafka:
     producer:
       bootstrap-servers: ${KAFKA_SERVER_URL}
